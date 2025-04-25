@@ -8,7 +8,7 @@ import {
   Network,
   Shield,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SettingsPage = () => {
   const [notifications, setNotifications] = useState(true);
@@ -18,6 +18,25 @@ const SettingsPage = () => {
   const [autoBackup, setAutoBackup] = useState(false);
   const [apiAccess, setApiAccess] = useState(false);
   const [encryption, setEncryption] = useState("aes-256");
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+
+    if (darkMode) {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      setDarkMode(true);
+    }
+  }, []);
 
   const settingsSections = [
     {
