@@ -18,6 +18,13 @@ const SettingsPage = () => {
   const [autoBackup, setAutoBackup] = useState(false);
   const [apiAccess, setApiAccess] = useState(false);
   const [encryption, setEncryption] = useState("aes-256");
+  
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      setDarkMode(true);
+    }
+  }, []);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -31,12 +38,6 @@ const SettingsPage = () => {
     }
   }, [darkMode]);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setDarkMode(true);
-    }
-  }, []);
 
   const settingsSections = [
     {
@@ -191,12 +192,12 @@ const SettingsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <div className="flex-1 flex flex-col items-center">
         <div className="w-full max-w-4xl px-4 py-8">
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-semibold text-gray-900">Settings</h1>
-            <p className="mt-2 text-sm text-gray-600">
+            <h1 className="text-2xl font-semibold">Settings</h1>
+            <p className="mt-2 text-sm">
               Manage your account settings and preferences
             </p>
           </div>
@@ -205,13 +206,13 @@ const SettingsPage = () => {
             {settingsSections.map((section, index) => (
               <div
                 key={index}
-                className="bg-white shadow rounded-lg overflow-hidden"
+                className="shadow-theme bg-secondary rounded-lg overflow-hidden"
               >
                 <div className="px-6 py-5">
-                  <h2 className="text-lg font-medium text-gray-900">
+                  <h2 className="text-lg font-medium">
                     {section.title}
                   </h2>
-                  <p className="mt-1 text-sm text-gray-600">
+                  <p className="mt-1 text-sm">
                     {section.description}
                   </p>
 
@@ -222,14 +223,14 @@ const SettingsPage = () => {
                         className="flex items-center justify-between"
                       >
                         <div className="flex items-center">
-                          <div className="flex-shrink-0 text-gray-500">
+                          <div className="flex-shrink-0">
                             {item.icon}
                           </div>
                           <div className="ml-3">
-                            <p className="text-sm font-medium text-gray-900">
+                            <p className="text-sm font-medium">
                               {item.title}
                             </p>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm">
                               {item.description}
                             </p>
                           </div>

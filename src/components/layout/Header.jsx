@@ -32,7 +32,7 @@ const Header = ({ onMenuClick }) => {
   }
 
   return (
-    <header className="h-16 bg-white px-6 border-b shadow-sm">
+    <header className="h-16 bg-background text-foreground px-6 border-b shadow-sm">
       <div className="flex items-center justify-between h-full max-w-[1440px] mx-auto">
         {/* Left: Logo + Nav */}
         <div className="flex items-center space-x-10">
@@ -46,7 +46,7 @@ const Header = ({ onMenuClick }) => {
               <button
                 key={item}
                 onClick={() => handleNavClick(item)}
-                className="text-sm font-medium text-gray-700 hover:text-blue-600"
+                className="text-sm font-medium text-foreground hover:text-blue-600"
               >
                 {item}
               </button>

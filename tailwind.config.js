@@ -68,6 +68,9 @@ module.exports = {
       animation: {
         popup: "popup 0.5s ease-out",
       },
+      boxShadow: {
+        theme: 'var(--shadow)',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
